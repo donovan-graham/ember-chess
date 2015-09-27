@@ -34,12 +34,12 @@ var toPos = function(x, y) {
 var Piece = Ember.Object.extend({
 
   // interface
+  name: null,
   type: null,
   codes: null,
   weight: null,
   offsets: [],
   captures: [],
-
 
 
   // init params
@@ -58,6 +58,16 @@ var Piece = Ember.Object.extend({
 
   code: computed('codes', 'color', function() {
     return this.get(`codes.${this.get('color')}`).htmlSafe();
+  }),
+
+  template: computed('name', 'color', function() {
+    let t = `svgs/${this.get('name')}`;
+    if (this.get('color') === WHITE) {
+      t += '-white';
+    } else {
+     t += '-black';
+    }
+    return t;
   }),
 
   moves(board) {
@@ -130,6 +140,7 @@ var Piece = Ember.Object.extend({
 
 
 var King = Piece.extend({
+  name: 'king',
   type: KING,
   codes: {
     W: '&#9812;',
@@ -152,6 +163,7 @@ var King = Piece.extend({
 
 
 var Queen = Piece.extend({
+  name: 'queen',
   type: QUEEN,
   codes: {
     W: '&#9813;',
@@ -175,6 +187,7 @@ var Queen = Piece.extend({
 
 
 var Bishop = Piece.extend({
+  name: 'bishop',
   type: BISHOP,
   codes: {
     W: '&#9815;',
@@ -193,6 +206,7 @@ var Bishop = Piece.extend({
 
 
 var Knight = Piece.extend({
+  name: 'knight',
   type: KNIGHT,
   codes: {
     W: '&#9816;',
@@ -216,6 +230,7 @@ var Knight = Piece.extend({
 
 
 var Castle = Piece.extend({
+  name: 'castle',
   type: CASTLE,
   codes: {
     W: '&#9814;',
@@ -235,6 +250,7 @@ var Castle = Piece.extend({
 
 
 var Pawn = Piece.extend({
+  name: 'pawn',
   type: PAWN,
   codes: {
     W: '&#9817;',
