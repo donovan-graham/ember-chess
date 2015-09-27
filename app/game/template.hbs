@@ -1,0 +1,17 @@
+<table class="board" cellspacing=0>
+  {{#each ranks as |rank|}}
+    <tr>
+      {{#each files as |file|}}
+        {{chess-square file=file rank=rank board=board turn=turn activePiece=activePiece moves=moves pick=(action 'pick') move=(action 'move')}}
+      {{/each}}
+    </tr>
+  {{/each}}
+</table>
+
+Turn: {{turn}} <br>
+White pieces: {{whitePieces.length}} <br>
+Black pieces: {{blackPieces.length}} <br>
+
+
+<br>
+<button {{action (action 'reset')}}>Reset</button>
