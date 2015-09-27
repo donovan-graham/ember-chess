@@ -1,0 +1,45 @@
+table.board {
+  border: 1px solid $black-square;
+  cellspacing: 0px;
+  margin: 20px;
+
+  td {
+    cursor: pointer;
+    height: 60px;
+    width: 60px;
+    min-width: 60px;
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+
+    @include transition(border-color 90ms linear, background-color 90ms linear);
+
+    &.black {
+      background-color: $black-square;
+      &.is-move {
+        background-color: $black-move;
+        &:hover {
+          border: 1px solid $black-move-hover;
+        }
+      }
+    }
+
+    &.white {
+      background-color: $white-square;
+      &.is-move {
+        background-color: $white-move;
+        &:hover {
+          border: 1px solid $white-move-hover;
+        }
+      }
+    }
+
+    &.is-active {
+      border: 3px solid $active-sqaure;
+    }
+
+    &:disabled, &[disabled="true"] {
+      cursor: not-allowed !important;
+    }
+  }
+}
