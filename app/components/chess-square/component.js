@@ -21,7 +21,6 @@ export default Ember.Component.extend({
 
   // props
   isActive: false,
-  disabled: false,
 
   pos: computed('file', 'rank', function() {
     return `${this.get('file')}${this.get('rank')}`;
@@ -38,12 +37,25 @@ export default Ember.Component.extend({
   }),
 
   isActive: computed('piece', 'activePiece', function() {
-    return (this.get('piece') && this.get('activePiece') && this.get('piece') === this.get('activePiece'));
+    return (this.get('piece') && this.get('piece') === this.get('activePiece'));
   }),
 
   isMove: computed('pos', 'moves.[]', function () {
     return this.get('moves').contains(this.get('pos'));
   }),
+
+  disabled: computed('isMove', 'turn', 'piece.color', function() {
+    if (this.get('isMove')) {
+      return false;
+    }
+
+    if (this.get('piece.color') === this.get('turn')) {
+      return false;
+    }
+
+    return true;
+  }),
+
 
   click() {
     let piece = this.get('piece');
