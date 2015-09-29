@@ -45,3 +45,9 @@ button, a {
   cursor: pointer;
 }
 
+/* http://guides.emberjs.com/v2.0.0/templates/actions/#toc_attaching-actions-to-non-clickable-elements */
+
+[data-ember-action] {
+  cursor: pointer;
+}
+
