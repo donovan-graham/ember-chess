@@ -33,6 +33,21 @@ export default Ember.Controller.extend({
     return board;
   }),
 
+  whiteMoves: computed('board', function() {
+    let whiteMoves = this.get('whitePieces').map(p => {
+      return p.moves(this.get('board'));
+    });
+    return _.unique(_.flatten(whiteMoves));
+  }),
+
+  blackMoves: computed('board', function() {
+    let blackMoves = this.get('blackPieces').map(p => {
+      return p.moves(this.get('board'));
+    });
+
+    return _.unique(_.flatten(blackMoves));
+  }),
+
   turn: computed('history.length', function() {
     return (this.get('history.length') % 2 === 0) ? WHITE : BLACK;
   }),

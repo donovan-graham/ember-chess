@@ -38,6 +38,20 @@ table.board {
       border: 3px solid $active-sqaure;
     }
 
+    &.is-white-move {
+      background-color: green !important;
+    }
+    &.is-black-move {
+      background-color: red !important;
+    }
+
+
+    &.is-white-move.is-black-move {
+      background-color: purple !important;
+    }
+
+
+
     &:disabled, &[disabled="true"] {
       cursor: not-allowed !important;
     }

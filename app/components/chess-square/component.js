@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-import { FILES, WHITE, BLACK } from '../../utils/pieces';
+import { FILES } from '../../utils/pieces';
 
 const { computed } = Ember;
 
@@ -9,7 +9,7 @@ export default Ember.Component.extend({
   tagName: 'td',
 
   attributeBindings: ['pos:data-id', 'disabled'],
-  classNameBindings: ['color', 'isMove', 'isActive'],
+  classNameBindings: ['color', 'isMove', 'isActive', 'isWhiteMove', 'isBlackMove'],
 
   // attrs
   file: null,
@@ -20,8 +20,6 @@ export default Ember.Component.extend({
   activePiece: null,
 
   // props
-  isActive: false,
-
   pos: computed('file', 'rank', function() {
     return `${this.get('file')}${this.get('rank')}`;
   }),
@@ -42,6 +40,14 @@ export default Ember.Component.extend({
 
   isMove: computed('pos', 'moves.[]', function () {
     return this.get('moves').contains(this.get('pos'));
+  }),
+
+  isWhiteMove: computed('pos', 'whiteMoves.[]', function() {
+    return this.get('whiteMoves').contains(this.get('pos'));
+  }),
+
+  isBlackMove: computed('pos', 'blackMoves.[]', function() {
+    return this.get('blackMoves').contains(this.get('pos'));
   }),
 
   disabled: computed('isMove', 'turn', 'piece.color', function() {

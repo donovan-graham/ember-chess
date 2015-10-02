@@ -2,7 +2,18 @@
   {{#each ranks as |rank|}}
     <tr>
       {{#each files as |file|}}
-        {{chess-square file=file rank=rank board=board turn=turn activePiece=activePiece moves=moves pick=(action 'pick') move=(action 'move')}}
+        {{chess-square
+            file=file
+            rank=rank
+            board=board
+            turn=turn
+            whiteMoves=whiteMoves
+            blackMoves=blackMoves
+            activePiece=activePiece
+            moves=moves
+            pick=(action 'pick')
+            move=(action 'move')
+        }}
       {{/each}}
     </tr>
   {{/each}}
