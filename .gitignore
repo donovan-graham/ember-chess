@@ -3,5 +3,7 @@
 /dist
 /tmp
 /cordova
+/app
+/tests
 .DS_Store
 Thumbs.db
